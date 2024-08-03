@@ -1,0 +1,3 @@
+[submodule "themes/almeida-cv-martopad"]
+	path = themes/almeida-cv-martopad
+	url = https://github.com/martopad/almeida-cv-martopad.git
