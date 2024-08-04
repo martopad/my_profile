@@ -1,0 +1,176 @@
+BasicInfo:
+  FirstName: Martin Luther
+  LastName: Yung
+  Contacts:
+    - Icon: fas fa-phone
+      Info: +48 793 747 655
+    - Icon: fas fa-envelope
+      Info: martin_luther_yung@outlook.com
+    - Icon: fas fa-globe
+      Info: <a class="contact__link" href="https://profile.martinlutheryung.com" target="_blank">My Profile Site</a>
+    - Icon: fas fa-map-marker-alt
+      Info: Wroclaw, Poland
+
+Profile: A hodgepodge between a Developer and a DevOps
+
+Experience:
+  - Employer: Nokia
+    Place: Wroclaw, Poland
+    Positions:
+      - Title: Software Engineer
+        Date: Feb 2021 - Present
+        Details:
+          - Performs DevOps-related tasks that affect multiple teams, ensuring CI/CD pipelines work for all teams.
+          - Implement, and push left-shift practices and tooling to all developer teams.
+          - Provide DevOps support for the whole BOAM product build-release process. This can range from machine-side issues and environment issues to domain-side code problems.
+          - Develop tools to assist in building, running, and performing quality analysis of codebases.
+        Badges: ['Python', 'C++', 'CMake', 'Yocto', "Build Systems", 'Coverity']
+
+  - Employer: Nokia
+    Place: Philippines
+    Positions:
+      - Title: Research and Development Engineer
+        Date: Mar 2019 - Jan 2020
+        Details:
+          - Performed feature development and maintenance of the WCDMA-OAM project. Handled tester and customer prontos and features. In addition, improvements that involved build-system and CI/CD.
+          - Solo-implemented a long-overdue migration to conform with the central build team's unified toolchain/SDK.
+            This brought the much-needed platform update that resulted in better compiler and tools, environment consistency,
+            and conformance with how the central build team does it. The implementation spanned WCDMA-OAM's monolithic repository
+            that housed ~15+ domains previously developed by many teams. In addition, I also performed a wide-sweeping cleanup
+            of this monolithic repository, resulting in ~800 files removed in the main branch. 
+          - Due to the previous achievement, I was able to push for these various improvements
+            Upgrade from c++11 to c++14 standard.
+            Research and implement proof-of-concepts for distcc and ccache to accelerate build times. In addition,
+            accelerate link times via LLVM linker (ldd).
+          - Without any prior training, I delved into DevOps-related work that led to the two previous achievements that extended
+            to improvements on the CI side of things. The team had no locally available CI expert at that time, and I was able to implement changes
+            Improve visibility of which UT/MT are flaky and uncover a technical debt wherein return code in CI runs are
+            determined by console log parsing instead of detecting the return code.
+            Adjust each of the ~15+ domains CI configuration to have tighter timeouts (reversed-engineered the legacy solution as
+            the configuration didn't reside on the CI itself)
+        Badges: ['C++', 'CMake', 'Rational Rhapsody', 'subversion', "Agile"]
+
+  - Employer: Okada Manila
+    Place: Philippines
+    Positions:
+      - Title: Project Management Intern
+        Date: Oct 2016 - Dec 2016
+        Details:
+          - Worked on projects focused on IBM Maximo, an enterprise asset management system.
+        Badges: ['Python', 'HTML', 'CSS', 'C#/Unity']
+Projects:
+  - Title: "Hosting my first app on my Kubernetes cluster"
+    Subtitle: Publicly available
+    Date: 2024
+    Details:
+      - To make sure that all of my toiling resulted in something fruitful, I hosted a simple static website.
+        This is exposed to the internet using Cloudflare tunnel. Once setup properly,
+        Kubernetes declarative nature is magical, It keeps tripping my danger senses though XD.
+        The core kubernetes is composed of flannel as cni, coredns, istio as ingress controller,
+        and metallb as load balancer. For the app I deployed cloudflared to handle the endpoint,
+        stored the static website content in my glusterfs storage, nginx mounts this to serve the
+        static website, the static website is generated using Hugo.
+    Links:
+      - Title: ""
+        Url: "https://profile.martinlutheryung.com"
+        Icon: fas fa-globe
+    Badges: ['Cloudflare Tunnels', 'K8s Deployments']
+  - Title: "Creating my own baremetal Kubernetes cluster"
+    Subtitle: Kubernetes-the-hardway to boot!
+    Date: 2024
+    Details:
+      - As if Gentoo was not hard enough, I provisioned my own Kubernetes
+        cluster the hard way! In addition, glusterFS as storage backend.
+        It taught me the parts of a kubernetes cluster and why Kubernetes is a big topic.
+        I learned also Ansible to automate the provisioning and keep the setup documented.
+        Learning glusterfs is also fun. Suprisingly easy to configure.
+        Created also my first, though simple, EBuild to solve a missing package for arm64.
+    Links:
+      - Title: Available in Github
+        Url: "https://github.com/martopad/infra-ansible-kubernetes"
+        Icon: fab fa-github
+    Badges: ['Kubernetes', 'CNI', 'Ansible', 'glusterfs']
+  - Title: "Provisioning my baremetal machines with Gentoo"
+    Subtitle: Gentoo on low powered machines, are you insane?
+    Date: 2024
+    Details:
+      - To solve my infrastructure and linux troublshooting weakness,
+        I bought some un100ds (x86-64) and raspberry pi 5s (arm64) and
+        provision then with a linux OS of my choice-- Gentoo.
+        Its a challenge to my linux administration chops(not everything went smoothly.)
+        Coincedentally, it challenged my software design skills since I have to make my
+        provisioning scripts maintainable (at least to me.)"
+    Links:
+      - Title: Available in Github
+        Url: "https://github.com/martopad/server-setup"
+        Icon: fab fa-github
+    Badges: ['Gentoo', 'bootloading']
+
+Education:
+  - Course: BSc in Computer Engineering
+    Place: Mapua University (Formerly Mapua Institute of Technology)
+    Date: 2010 - 2017
+    Details: Specialised in data analysis
+
+      #References:
+      #  - Name: Person One
+      #    Relation: Co-worker at Super Cool Company
+      #    Contacts:
+      #    - Icon: fas fa-phone
+      #      Info: +44 123 456 790
+      #    - Icon: fas fa-envelope
+      #      Info: contact@person-one.com
+      #    - Icon: fas fa-map-marker-alt
+      #      Info: Melbourne, Australia
+      #  - Name: Person Two
+      #    Relation: Boss at Super Cool Company
+      #    Contacts:
+      #    - Icon: fas fa-phone
+      #      Info: +44 123 456 791
+      #    - Icon: fas fa-envelope
+      #      Info: contact@person-two.com
+      #    - Icon: fas fa-map-marker-alt
+      #      Info: Sydney, Australia
+
+
+Skills:
+  - Family: Programming and Tooling
+    Items:
+      - C++
+      - Python
+      - Bash
+      - Coverity
+      - clangformat
+      - gcov/r
+  - Family: DevOps/Build-Systems
+    Items:
+      - Yocto
+      - CMake
+      - Git (Gerrit)
+      - Docker
+      - Kubernetes
+      - AWS
+  - Family: Linux Administration
+    Items:
+      - Linux (Gentoo)
+      - WSL
+      - Ansible
+  - Family: Work-related Interests
+    Items:
+      - Build-systems
+      - Embedded
+      - CI/CD
+      - Automation
+
+Languages:
+  - Name: Filipino/Tagalog
+    Level: Native
+  - Name: English
+    Level: Fluent
+
+Interests:
+  - Gaming
+  - Technology
+  - Hiking
+  - Running
+  - Tinkering
