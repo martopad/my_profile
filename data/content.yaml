@@ -6,12 +6,11 @@ BasicInfo:
       Info: +48 793 747 655
     - Icon: fas fa-envelope
       Info: martin_luther_yung@outlook.com
-    - Icon: fas fa-globe
-      Info: <a class="contact__link" href="https://profile.martinlutheryung.com" target="_blank">My Profile Site</a>
     - Icon: fas fa-map-marker-alt
       Info: Wroclaw, Poland
 
-Profile: A hodgepodge between a Developer and a DevOps
+Profile:
+  A hodgepodge between a Developer and a DevOps.
 
 Experience:
   - Employer: Nokia
@@ -60,51 +59,49 @@ Experience:
         Badges: ['Python', 'HTML', 'CSS', 'C#/Unity']
 Projects:
   - Title: "Hosting my first app on my Kubernetes cluster"
-    Subtitle: Publicly available
+    Subtitle: This CV site is hosted on it!
     Date: 2024
     Details:
-      - To make sure that all of my toiling resulted in something fruitful, I hosted a simple static website.
-        This is exposed to the internet using Cloudflare tunnel. Once setup properly,
-        Kubernetes declarative nature is magical, It keeps tripping my danger senses though XD.
-        The core kubernetes is composed of flannel as cni, coredns, istio as ingress controller,
-        and metallb as load balancer. For the app I deployed cloudflared to handle the endpoint,
-        stored the static website content in my glusterfs storage, nginx mounts this to serve the
-        static website, the static website is generated using Hugo.
+      - I hosted a simple static website to ensure that all of my toilings resulted in something fruitful.
+        This is exposed to the internet using Cloudflare tunnel.
+        Once set correctly, Kubernete's declarative nature is magical; It keeps tripping my danger senses. XD.
+        My core Kubernetes setup comprises flannel as CNI, CoreDNS, Istio as ingress controller, and Metallb as load-balancer.
+        For the app, I used Cloudflare Tunnels to handle the endpoint and stored the static website content in my
+        Glusterfs storage; nginx mounts this to serve the static website. This static website uses Hugo as the website generator.
     Links:
       - Title: ""
-        Url: "https://profile.martinlutheryung.com"
+        Url: "https://cv.martinlutheryung.com"
         Icon: fas fa-globe
     Badges: ['Cloudflare Tunnels', 'K8s Deployments']
   - Title: "Creating my own baremetal Kubernetes cluster"
     Subtitle: Kubernetes-the-hardway to boot!
     Date: 2024
     Details:
-      - As if Gentoo was not hard enough, I provisioned my own Kubernetes
-        cluster the hard way! In addition, glusterFS as storage backend.
-        It taught me the parts of a kubernetes cluster and why Kubernetes is a big topic.
-        I learned also Ansible to automate the provisioning and keep the setup documented.
-        Learning glusterfs is also fun. Suprisingly easy to configure.
-        Created also my first, though simple, EBuild to solve a missing package for arm64.
+      - I provisioned my own Kubernetes cluster the hard way! In addition, I used GlusterFS
+        as a storage backend. It taught me the parts of a Kubernetes cluster and why Kubernetes
+        is a big topic. I also learned Ansible to automate the provisioning and keep the setup
+        documented. Learning Glusterfs is also fun. It is surprisingly easy to configure.
+        I also created my first, though simple, EBuild to solve a missing package for arm64.
     Links:
       - Title: Available in Github
         Url: "https://github.com/martopad/infra-ansible-kubernetes"
         Icon: fab fa-github
-    Badges: ['Kubernetes', 'CNI', 'Ansible', 'glusterfs']
+    Badges: ['Kubernetes', 'Ansible', 'Glusterfs']
   - Title: "Provisioning my baremetal machines with Gentoo"
     Subtitle: Gentoo on low powered machines, are you insane?
     Date: 2024
     Details:
-      - To solve my infrastructure and linux troublshooting weakness,
-        I bought some un100ds (x86-64) and raspberry pi 5s (arm64) and
-        provision then with a linux OS of my choice-- Gentoo.
-        Its a challenge to my linux administration chops(not everything went smoothly.)
-        Coincedentally, it challenged my software design skills since I have to make my
+      - To solve my infrastructure and Linux troubleshooting weakness,
+        I bought some Un100ds (x86-64) and Raspberry Pi 5s (arm64) and provisioned
+        them with a Linux OS of my choice-- Gentoo.
+        It's a challenge to my Linux administration chops(not everything went smoothly.)
+        Coincidentally, it challenged my software design skills since I had to make my
         provisioning scripts maintainable (at least to me.)"
     Links:
       - Title: Available in Github
         Url: "https://github.com/martopad/server-setup"
         Icon: fab fa-github
-    Badges: ['Gentoo', 'bootloading']
+    Badges: ['Gentoo', 'Bootloading']
 
 Education:
   - Course: BSc in Computer Engineering
@@ -134,6 +131,9 @@ Education:
 
 
 Skills:
+  - Family: Most Proficient
+    Items:
+      - Troubleshooting build issues
   - Family: Programming and Tooling
     Items:
       - C++
