@@ -4,8 +4,8 @@ date = 2024-07-28T16:54:19+02:00
 toc = true
 +++
 
-## Why?
-1. Create an actual, on-prem, Kubernetes cluster service.
+## Goals
+1. Create an actual, on-prem, Linux-powered nodes.
 2. Improve my linux administration skills by provisioning physical machines.
     * My experience is limited to WSL, and my personal PC.
 3. Extend my current Gentoo usage from personal, to a production environment.
@@ -15,25 +15,27 @@ toc = true
 
 ## Machines used
 1. 4x Minisform UN100D:
-    * Intel N100 (4 core) low power amd64 pc.
+    * Intel N100 (4 core) low-power amd64 pc.
+    * It comes with NVME storage. But I used micro-sd cards as boot drive to
+    be able to use the NVME as network storage.
 2. 6x Raspberry Pi 5:
     * arm64 SBC.
 
 ## Journey
-The plan sounds simple right? Provision my own, on-prem, baremetal Kubernetes cluster.
-But as with any personal projects, many of the implementation details are not considered
-when starting. Here are a few of the problems.
+The plan sounds simple right? Provision my own, on-prem, baremetal linux machines.
+It would have been easier if I used OS's like Ubuntu, or Mint. Since I wanted it to
+be a learning experience, I went with Gentoo. Though it took more time, the learnings
+are worth it:
 
 1. Different bootloaders:
-    * UEFI compliance, two amd64 machines look at different directories when finding the boot files.
-    * Raspberry Pi5 is not UEFI compliant and has a different boot behavior.
+    * I needed to create different processes for the two machines as they have different boot behavior.
 2. Bootstrapping the live-cd environment
     * Doing this was easy for amd64, since my personal machine is amd64.
     * For the Raspberry Pis, I had to bootstrap the first one using [this guide](https://wiki.gentoo.org/wiki/Raspberry_Pi_Install_Guide).
       Then used that to provision all micro-sd cards for the other machines.
 2. Solving Gentoo's compilation-from-source requirement:
-    * Gentoo is a very flexible OS. But as a downside, users will need to compile from source.
-    Using bin hosts partially solves this, not every package has a bin host.
+    * Gentoo is a very flexible OS. Flexibility comes by having to compile-from-source the packages.
+    Using bin hosts partially solves this-- not every package has a bin host.
     * My system configuration is also basic for now (no custom flags, etc). So using bin host is
     okay.
     * I consider this a workaround while I figure out how to create my own distcc cross-compiling
@@ -42,7 +44,7 @@ when starting. Here are a few of the problems.
 Since I use it daily at work, I use a mixture of Python and Bash scripts to implement and document
 the process. [This Github Repo](https://github.com/martopad/server-setup).
 
-## Findings
+## Learnings
 
 1. Python on the Gentoo's live-cd is up-to-date!
 2. Using Python to call bash scripts is a very flexible approach.
@@ -63,7 +65,8 @@ BASE_DIR=${INJECTED_BASE_DIR} # <-- Value is dynamically injected
                               #     the key's value.
 [ARGPY]
 ARGPY_BASE_DIR=${INJECTED:BASE_DIR}
-``` 
+```
+
 4. There is a weird behavior when calling the shell command `arch-chroot` directly via subprocess.run.
 I don't know why it happens. But to solve it, I created a bash script that just calls
 `arch-chroot`. Like this:
@@ -89,7 +92,29 @@ subprocess.run(
             "arg2"
         ]
 )
-```       
+```
+5. Gentoo's way of package manager (portage) configuration lends itself well to documentation/source control.
+    * [Directory structure for portage configuration for my UN100Ds:](https://github.com/martopad/server-setup/tree/main/src/amd64/un100d/root/etc/portage)
+``` bash
+server-setup/src/amd64/un100d/root/etc $ tree .
+.
+├── fstab_template
+├── portage
+│   ├── make.conf
+│   ├── package.accept_keywords
+│   │   └── installkernel
+│   ├── package.license
+│   │   └── kernel
+│   └── package.use
+│       ├── installkernel
+│       ├── linux-firmware
+│       ├── module-rebuild
+│       └── systemd-utils
+└── ssh
+    └── sshd_config
+
+6 directories, 9 files
+```
 
 ## Result
 Linux machines that are tunning Gentoo as OS. Although using defaults,
@@ -140,3 +165,10 @@ yMMNNNNNNNmmmmmNNMmhs+/-`
 `/ohdmmddhys+++/:.`
   `-//////:--.
 ```
+
+This is what it looks like!
+
+<a href="https://ibb.co/yhqGv6L">
+<img src="https://i.ibb.co/f8HB6km/PXL-20240818-114800801.jpg" alt="PXL-20240818-114800801" border="0">
+</a>
+
