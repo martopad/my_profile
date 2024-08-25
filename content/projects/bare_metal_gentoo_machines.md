@@ -6,57 +6,51 @@ toc = true
 
 ## Goals
 1. Create an actual, on-prem, Linux-powered nodes.
-2. Improve my linux administration skills by provisioning physical machines.
-    * My experience is limited to WSL, and my personal PC.
-3. Extend my current Gentoo usage from personal, to a production environment.
-    * I believe that Gentoo is very flexible for both use-cases.
-4. Practice my scripting/programming skills by automating the process. 
-    * Documentation as a side-effect.
+2. Improve my Linux administration skills by provisioning physical machines.
+    * My experience is limited to WSL and my personal PC.
+3. Extend my current Gentoo usage from a personal to a production environment.
+    *Gentoo is very flexible for both use cases.
+4. Practice my scripting/programming skills by automating the process.
+    *Documentation as a side-effect.
 
 ## Machines used
 1. 4x Minisform UN100D:
     * Intel N100 (4 core) low-power amd64 pc.
-    * It comes with NVME storage. But I used micro-sd cards as boot drive to
-    be able to use the NVME as network storage.
+    * It comes with NVME storage. However, I used micro-SD cards as a
+    boot drive to use the NVME as network storage.
 2. 6x Raspberry Pi 5:
     * arm64 SBC.
 
 ## Journey
-The plan sounds simple right? Provision my own, on-prem, baremetal linux machines.
-It would have been easier if I used OS's like Ubuntu, or Mint. Since I wanted it to
-be a learning experience, I went with Gentoo. Though it took more time, the learnings
-are worth it:
-
+The plan sounds simple: Provision of my own on-prem, bare metal Linux machines.
+It would have been easier to use OSs like Ubuntu or Mint. Since I wanted it to
+be a learning experience, I went with Gentoo. Though it took more time, the learnings are worth it:
 1. Different bootloaders:
-    * I needed to create different processes for the two machines as they have different boot behavior.
+    * I needed to create different processes for the two machines as they have different boot behaviors.
 2. Bootstrapping the live-cd environment
-    * Doing this was easy for amd64, since my personal machine is amd64.
-    * For the Raspberry Pis, I had to bootstrap the first one using [this guide](https://wiki.gentoo.org/wiki/Raspberry_Pi_Install_Guide).
-      Then used that to provision all micro-sd cards for the other machines.
-2. Solving Gentoo's compilation-from-source requirement:
-    * Gentoo is a very flexible OS. Flexibility comes by having to compile-from-source the packages.
-    Using bin hosts partially solves this-- not every package has a bin host.
-    * My system configuration is also basic for now (no custom flags, etc). So using bin host is
-    okay.
-    * I consider this a workaround while I figure out how to create my own distcc cross-compiling
-    environment.
+    * Doing this was easy for amd64 since my personal machine is amd64.
+    * I had to bootstrap the first one using this guide for the Raspberry Pis. I then used
+    that to provision all micro-sd cards for the other machines.
+3. Solving Gentoo’s compilation-from-source requirement:
+    * Gentoo is a very flexible OS. Flexibility comes from having to compile packages from source.
+    Using bin hosts partially solves this– not every package has a bin host.
+    * My system configuration is also essential for now (no custom flags, etc). So using bin host is okay.
+    * This is a workaround while I figure out how to create my distcc cross-compiling environment.
 
-Since I use it daily at work, I use a mixture of Python and Bash scripts to implement and document
-the process. [This Github Repo](https://github.com/martopad/server-setup).
+Since I use it daily at work, I use a mixture of Python and Bash scripts to
+implement and document the process. [This Github Repo](https://github.com/martopad/server-setup).
 
 ## Learnings
 
-1. Python on the Gentoo's live-cd is up-to-date!
+1. Python on Gentoo’s live CD is up-to-date!
 2. Using Python to call bash scripts is a very flexible approach.
-    * I used it also to create a customizable environment (passing --conf-file)
-    since subprocess takes env parameter.
+    * I also used it to create a customizable environment (passing –conf-file)
+    since the subprocess takes the env parameter.
     * [Example of config file](https://github.com/martopad/server-setup/blob/main/src/arm64/rpi/rpi5/config.ini)
-
-3. Extending Python's builtin json, and toml parsers is surprisingly easy!
-    * By using `configparser.ExtendedInterpolation` 
+3. Extending Python’s built-in TOML parser is surprisingly easy!
+    * By using configparser.ExtendedInterpolation
     * I used it to inject dynamic data in my configuration file and strip inline comments.
-
-    Example:
+    * Example:
 ``` toml
 [INJECTED]
 BASE_DIR=${INJECTED_BASE_DIR} # <-- Value is dynamically injected
@@ -68,8 +62,7 @@ ARGPY_BASE_DIR=${INJECTED:BASE_DIR}
 ```
 
 4. There is a weird behavior when calling the shell command `arch-chroot` directly via subprocess.run.
-I don't know why it happens. But to solve it, I created a bash script that just calls
-`arch-chroot`. Like this:
+I don't know why it happens. But to solve it, I created a bash script that calls `arch-chroot`. Like this:
 
 ``` bash
 #exec_as_chroot.sh
@@ -117,7 +110,7 @@ server-setup/src/amd64/un100d/root/etc $ tree .
 ```
 
 ## Result
-Linux machines that are tunning Gentoo as OS. Although using defaults,
+Linux machines that are running Gentoo as OS. Although using defaults,
 the installation is minimal. (I'm sure I can optimize it more).
 
 UN100D machine:

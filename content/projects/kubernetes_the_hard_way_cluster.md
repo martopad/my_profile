@@ -16,36 +16,33 @@ toc = true
 4. The rest, worker nodes
 
 ## Journey
-As expected, I made this journey a lot harder for myself. So instead of
-focusing only on learning kubernetes by using something like minikube
-or K3s, a significant portion of my time went into learning how to
-provision a kubernetes cluster from scratch-- it was worth it though.
+As expected, I made this journey a lot harder for myself. So, instead of focusing
+only on learning Kubernetes by using something like Minikube or K3s, I spent a
+significant portion of my time learning how to provision a Kubernetes cluster from
+scratch– it was worth it, though.
 
-I was also met with a huge set back. I initially followed
-[this tutorial](https://github.com/kelseyhightower/kubernetes-the-hard-way)
-due to popularity. After following it, I was met with inconsistent behaviors
-when trying to apply tutorials to provision coreDNS, CNI, and etc. Then I
-came across [this fork](https://github.com/mmumshad/kubernetes-the-hard-way).
-According to it, the original `kubernetes-the-hard-way` is geared towards
-GCP deployment. This explained why the documentations I am reading and
-tutorials that I am following does not work out-of-the-box.
+My journey was not without its setbacks. Initially, I followed a
+[popular tutorial](https://github.com/kelseyhightower/kubernetes-the-hard-way),
+only to be met with inconsistent behaviors when attempting to apply the lessons to
+provision coreDNS, CNI, and other components. It was then that I discovered
+[a fork](https://github.com/mmumshad/kubernetes-the-hard-way) that shed light on the
+issue. The original kubernetes-the-hard-way was designed for GCP deployment,
+explaining why the documentation and tutorials I followed didn't yield the expected results.
 
-Sad as it is, I had to scrap days of work to follow `mmumshad's` tutorial
-instead. After following it, with changes due to my OS of choice, my Kubernetes
-cluster is finally working!
+Sad as it is, I had to scrap days of work to follow Mmumshad's tutorial instead.
+After following it, with changes due to my OS of choice, my Kubernetes cluster is finally working!
 
 ## Learnings
 
-1. I can see why Ansible picked-up popularity. It's syntax is friendly to
-non-developers. Though coming from a developer background, I encountered
-some scenarios wherein I said to my self, *this would be been easier if I
-can code directly*. But, more often than not, I was able to do what I
-wanted to do with Ansible. It also helped that Ansible is widely supported,
+1. I can see why Ansible picked up popularity. Its syntax is friendly to non-developers.
+Though coming from a developer background, I encountered some scenarios wherein I said
+this would have been easier if I could code it directly. But, more often than not,
+I was able to do what I wanted to do with Ansible. It also helped that Ansible is widely supported;
 it even has a Portage module!
-    * One feature that I appreciated was being able to detect and create
+    * One feature that I appreciated was being able to detect and create 
     *If statements* depending on architecture. In this example, since my
-    nodes are a mix between amd64 and arm64, the GlusterFS ebuild is masked
-    for arm64 and I needed to some portage configuration to unmask it.
+    nodes are a mix between amd64 and arm64, the GlusterFS ebuild is masked for arm64,
+    and I needed to do some portage configuration to unmask it.
 
 ```yaml
 - name: Add accept keywords for GlusterFS for aarch64 (raspi5)
@@ -55,32 +52,28 @@ it even has a Portage module!
       when:
         - ansible_architecture == "aarch64"
 ```
-2. Since Gentoo is highly configurable, creating your own ebuilds, app recipes,
-is encouraged. It makes sense, since there are so many linux apps created. Though
-Kubernetes modules work well in Gentoo, ipvsadm is not yet supported on arm64.
-    * In this example, though minor, I had to create my
-    [own Gentoo Portage overlay](https://github.com/martopad/gentoo-overlay)
-    to get it installed.
+2. Since Gentoo is highly configurable, creating your ebuilds and app recipes are encouraged.
+It makes sense since there are so many Linux apps. Though Kubernetes modules work well in Gentoo,
+ipvsadm is not yet supported on arm64.
+    * Though minor in this example, I had to create my own
+    [Gentoo Portage overlay](https://github.com/martopad/gentoo-overlay) to install it.
     * etcd is also not supported for arm64 on Gentoo yet. But in that case, I
     just installed it on amd64 nodes. I will migrate it in the future.
 
-3. GlusterFS is suprisingly easy to configure. Once you identify the Volume type
-that you want, it is just a matter of identifying which drives in each node that
-you want to use as glusterfs bricks.
+3. GlusterFS is surprisingly easy to configure. Once you identify the Volume type you want, it is
+just a matter of determining which drives you want to use as GlusterFS bricks in each node.
 
-4. Kubernetes removed support for GlusterFS. Though no pretty, I resorted to
-having worker nodes mount the Gluster volume then exposing that as a mount
-point to containers.
-    * Kadalu is being thrown around online. But it looks complicated to implement
-    vs to what I did. Most likely I will just use Kubernetes NFS support to
-    mount Gluster volumes in the future.
+4. Kubernetes removed support for GlusterFS. Though not pretty, I resorted to having worker nodes
+mount the Gluster volume and then exposing that as a mount point to containers.
+    * Online threads are saying Kadalu is a suitable replacement. But it could be more straightforward
+    to implement compared to what I did. I will likely use Kubernetes NFS support to mount Gluster volumes.
 
-5. Though doing it the-hardway consumed a lot of time, once it is setup, Kubernetes'
-declarative nature makes it a delight to use. Although it still triggers my
-*this-is-too-easy-I-must-be-doing-something-wrong* senses XD.
+5. Though doing it the hard way consumed a lot of time, Kubernetes' declarative nature makes it a
+delight to use once it is set. Although it still triggers my `this-is-too-easy-I-must-be-doing-something-wrong`
+senses XD.
     * I used bare Kubernetes manifests to deploy stuff and it was still easy. Helm
     is on my sights for sure.
-    * Kubernetes Stack:
+    * My Kubernetes Stack:
         1. Flannel for CNI
         2. CoreDNS
         3. Istio for ingress gateway

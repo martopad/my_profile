@@ -1,5 +1,7 @@
 Yo!
 
-Welcome to my little profile. This website is my first deployed
-app after provisioning my on-prem, and baremetal kubernetes cluster.
+Welcome to my little profile on the internet. This is just a static website to host
+more details about what I show on my [CV](cv.martinlutheryung.com).
+
+Feel free look at the menu bar at top to see details about me.
 

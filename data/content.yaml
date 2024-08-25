@@ -47,7 +47,7 @@ Experience:
             determined by console log parsing instead of detecting the return code.
             Adjust each of the ~15+ domains CI configuration to have tighter timeouts (reversed-engineered the legacy solution as
             the configuration didn't reside on the CI itself)
-        Badges: ['C++', 'CMake', 'Rational Rhapsody', 'subversion', "Agile"]
+        Badges: ['C++', 'CMake', 'Rational Rhapsody', 'Subversion', "Agile"]
 
   - Employer: Okada Manila
     Place: Philippines
@@ -56,7 +56,7 @@ Experience:
         Date: Oct 2016 - Dec 2016
         Details:
           - Worked on projects focused on IBM Maximo, an enterprise asset management system.
-        Badges: ['Python', 'HTML', 'CSS', 'C#/Unity']
+        Badges: ['IBM Maximo']
 Projects:
   - Title: "Hosting my first app on my Kubernetes cluster"
     Subtitle: This CV site is hosted on it!
@@ -83,9 +83,9 @@ Projects:
         documented. Learning Glusterfs is also fun. It is surprisingly easy to configure.
         I also created my first, though simple, EBuild to solve a missing package for arm64.
     Links:
-      - Title: Available in Github
-        Url: "https://github.com/martopad/infra-ansible-kubernetes"
-        Icon: fab fa-github
+      - Title: ""
+        Url: "https://profile.martinlutheryung.com/projects/kubernetes_the_hard_way_cluster/"
+        Icon: fas fa-globe
     Badges: ['Kubernetes', 'Ansible', 'Glusterfs']
   - Title: "Provisioning my baremetal machines with Gentoo"
     Subtitle: Gentoo on low powered machines, are you insane?
@@ -98,9 +98,9 @@ Projects:
         Coincidentally, it challenged my software design skills since I had to make my
         provisioning scripts maintainable (at least to me.)"
     Links:
-      - Title: Available in Github
-        Url: "https://github.com/martopad/server-setup"
-        Icon: fab fa-github
+      - Title: ""
+        Url: "https://profile.martinlutheryung.com/projects/bare_metal_gentoo_machines/"
+        Icon: fas fa-globe
     Badges: ['Gentoo', 'Bootloading']
 
 Diplomas:
