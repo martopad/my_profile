@@ -1,0 +1,77 @@
+baseURL: 'https://profile.martinlutheryung.com'
+theme: risotto
+title: Martin Luther Yung's Profile
+author: Martin Luther Yung
+copyright: >-
+  Tech Stack:
+    - On-prem Kubernetes
+    - Baremetal Gentoo Nodes
+    - Cloudlfare Tunnel
+paginate: 3
+languageCode: en
+DefaultContentLanguage: en
+enableInlineShortcodes: true
+ignoreErrors:
+  - error-remote-getjson
+sectionPagesMenu: main
+params:
+  noindex: false
+  theme:
+    palette: base16-dark
+  about:
+    title: Martin Luther Yung
+    description: 'a hodgepodge of a SW Developer, and DevOps Engineer.'
+      #logo: "\U0001f615"
+  socialLinks:
+    - icon: fa-brands fa-github
+      title: GitHub
+      url: 'https://github.com/martopad'
+    - icon: fa-solid fa-envelope
+      title: Email
+      url: 'mailto:martin_luther_yung@outlook.com'
+menu:
+  main:
+    - identifier: about-me
+      name: About Me
+      url: /about-me/
+      weight: 10
+        #- identifier: skills
+        #  name: Skills
+        #  url: /skills/
+        #  weight: 10
+    - identifier: experience
+      name: Experience
+      url: /experience/
+      weight: 10
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+    ordered: true
+privacy:
+  vimeo:
+    disabled: false
+    simple: true
+  twitter:
+    disabled: false
+    enableDNT: true
+    simple: true
+  instagram:
+    disabled: false
+    simple: true
+  youtube:
+    disabled: false
+    privacyEnhanced: true
+services:
+  instagram:
+    disableInlineCSS: true
+  twitter:
+    disableInlineCSS: true
+
